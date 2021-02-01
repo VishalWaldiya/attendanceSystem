@@ -32,7 +32,12 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'webui',
+    'django_extensions',
     'phonenumber_field',
+    # 'semanticuiforms',
+    'crispy_forms',
+    'crispy_forms_semantic_ui',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
+
+CRISPY_TEMPLATE_PACK = 'semantic-ui'
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3',
+                                 'bootstrap4', 'semantic-ui',)

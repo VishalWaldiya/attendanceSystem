@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Members List</h1>
+
+<table class="ui very basic table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Center</th>
+        <th>Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for member in object_list %}
+      <tr>
+        <td>{{ member.id }}</td>
+        <td>{{ member.name }}</td>
+        <td>{{ member.CenterDetails }}</td>
+        <td>{{ member.contact }}<br>{{ member.altcontact }}</td>
+    </tr>
+    {% empty %}
+        <td>No members yet.</td>
+    {% endfor %}
+    </ul>
+    </tbody>
+  </table>
+
+
+
+<ul>
+{% endblock body %}

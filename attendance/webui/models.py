@@ -7,6 +7,12 @@ GEMDER_TYPE = (
     ('F', 'Female'),
 )
 
+ACTIVE_TYPE = (
+    ('ACT', 'Active'), # Green State
+    ('TRAN', 'Transit'), # Orange State
+    ('INACT', 'InActive'), # Orange State
+)
+
 class MemberType(models.Model):
     """Model definition for MemberType.
     Using this as to identify Sewadar, IC, and Admin"""
@@ -111,39 +117,42 @@ class SecurityPost(models.Model):
         """Unicode representation of SecurityPost."""
         return '{}'.format(self.name ) # TODO
 
-    def save(self):
-        """Save method for SecurityPost."""
-        pass
-
-    def get_absolute_url(self):
-        """Return absolute url for SecurityPost."""
-        return ('')
-
-    # TODO: Define custom methods here
-
-class Transaction(models.Model):
-    """Model definition for Transaction."""
-
-    MemberDetails = models.ForeignKey('webui.MemberList', on_delete=models.DO_NOTHING)
-    inTime = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        """Meta definition for Transaction."""
-
-        verbose_name = 'Transaction'
-        verbose_name_plural = 'Transactions'
-
-    def __str__(self):
-        """Unicode representation of Transaction."""
-        return '{}'.format(self.inTime ) # TODO
-
     # def save(self):
-    #     """Save method for Transaction."""
+    #     """Save method for SecurityPost."""
     #     pass
 
     # def get_absolute_url(self):
-    #     """Return absolute url for Transaction."""
+    #     """Return absolute url for SecurityPost."""
+    #     return ('')
+
+    # TODO: Define custom methods here
+
+class TransactionPermanent(models.Model):
+    """Model definition for TransactionPermanent."""
+
+    MemberDetails = models.ForeignKey('webui.MemberList', on_delete=models.DO_NOTHING)
+    SecurityPostDetails = models.ForeignKey('webui.SecurityPost', on_delete=models.DO_NOTHING)
+
+    inTime = models.DateTimeField(auto_now_add=True)
+    outtime = models.DateTimeField(auto_now=False)
+    status = models.CharField(choices=ACTIVE_TYPE, max_length=50, default='ACT')
+
+    class Meta:
+        """Meta definition for TransactionPermanent."""
+
+        verbose_name = 'TransactionPermanent'
+        verbose_name_plural = 'TransactionPermanents'
+
+    def __str__(self):
+        """Unicode representation of TransactionPermanent."""
+        return '{}'.format(self.inTime ) # TODO
+
+    # def save(self):
+    #     """Save method for TransactionPermanent."""
+    #     pass
+
+    # def get_absolute_url(self):
+    #     """Return absolute url for TransactionPermanent."""
     #     return ('')
 
     # TODO: Define custom methods here

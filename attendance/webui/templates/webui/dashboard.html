@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned divided row">
+
+          <div class="ui stackable three column divided grid">
+          {% for gate,transactions in results.items %}
+            <div class="column">
+                <h3>"{{ gate }}"</h3>
+                <table class="ui very basic table">
+                    <thead>
+                      <tr>
+                        {% comment %} <th>ID</th> {% endcomment %}
+                        <th>Name</th>
+                        <th>Out Time</th>
+                        <th>Contact</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                        <tr>
+                            {% comment %} <td>{{ transaction.MemberDetails.id }}</td> {% endcomment %}
+                            <td>{{ transaction.MemberDetails.name }}</td>
+                            <td>{{ transaction.outtime }}</td>
+                            <td>{{ transaction.MemberDetails.contact }} <br> {% if transaction.MemberDetails.altcontact %} {{ transaction.MemberDetails.altcontact }} </td> {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- <div class="column">
+          <h3>"I shouldn't have gone with their competitor."</h3>
+          <p>
+          </p>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+{% endblock content %}
