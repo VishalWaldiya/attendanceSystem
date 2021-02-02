@@ -30,7 +30,7 @@
         ;
     });
 
-    $('select').on('change', function() {
+    $('select[name = "ID"]').on('change', function() {
         $.ajax({
             type: "GET",
             url: "/api/v1/member/" + this.value,

@@ -1,7 +1,7 @@
-from webui.models import MemberList
+from webui.models import Member
 from rest_framework import serializers
 
-class MemberListSerializer(serializers.ModelSerializer):
+class MemberSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MemberList
+        model = Member
         fields = '__all__'

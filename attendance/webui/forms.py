@@ -1,12 +1,12 @@
 from django import forms
-from .models import TransactionPermanent, MemberList ,MemberType, Center, GENDER_TYPE
+from .models import Transaction, Member ,MemberType, Center, GENDER_TYPE, SecurityPost
 
-GEEKS_CHOICES = MemberList.objects.values_list('id','id')
+GEEKS_CHOICES = Member.objects.values_list('id','id')
 
-class TransactionPermanentForm(forms.Form):
-    ID = forms.ChoiceField(
-        choices = GEEKS_CHOICES,
-        # queryset = MemberList.objects.values_list('id','id'),
+class TransactionForm(forms.Form):
+    ID = forms.ModelChoiceField(
+        # choices = GEEKS_CHOICES,
+        queryset = Member.objects.values_list('id'),
         label = 'Select or Search #',
         widget=forms.Select(attrs={"_style": "search", "_dropdown_icon": "dropdown"})
     )
@@ -58,3 +58,8 @@ class TransactionPermanentForm(forms.Form):
                                         "Placeholder": "Department", 
                                         "class": "ui " })
     )
+
+    SecurityPost = forms.ModelChoiceField(
+        queryset=SecurityPost.objects.all(),
+        widget=forms.Select(attrs={"_style": "search", "_dropdown_icon": "dropdown"})
+        )
