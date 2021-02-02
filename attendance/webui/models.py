@@ -2,7 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
-GEMDER_TYPE = (
+GENDER_TYPE = (
     ('M', 'Male'),
     ('F', 'Female'),
 )
@@ -51,7 +51,7 @@ class MemberList(models.Model):
     name = models.CharField(max_length=50)
     father_name = models.CharField(max_length=50,blank=True)
     # Can make a relation
-    gender = models.CharField(choices=GEMDER_TYPE,default='M', max_length=10)
+    gender = models.CharField(choices=GENDER_TYPE,default='M', max_length=10)
     contact = PhoneNumberField()
     altcontact = PhoneNumberField(blank=True)
     department = models.CharField(max_length=50, default="Security")
@@ -173,7 +173,7 @@ class MemberListOpen(models.Model):
     name = models.CharField(max_length=50)
     father_name = models.CharField(max_length=50,blank=True)
     # Can make a relation
-    gender = models.CharField(choices=GEMDER_TYPE,default='M', max_length=10)
+    gender = models.CharField(choices=GENDER_TYPE,default='M', max_length=10)
     contact = PhoneNumberField()
     altcontact = PhoneNumberField(blank=True)
     department = models.CharField(max_length=50, default="Security")

@@ -1,10 +1,9 @@
 from django import forms
-from .models import TransactionPermanent, MemberList
+from .models import TransactionPermanent, MemberList ,MemberType, Center, GENDER_TYPE
 
 GEEKS_CHOICES = MemberList.objects.values_list('id','id')
 
 class TransactionPermanentForm(forms.Form):
-    fields = '__all__'
     ID = forms.ChoiceField(
         choices = GEEKS_CHOICES,
         # queryset = MemberList.objects.values_list('id','id'),
@@ -18,89 +17,44 @@ class TransactionPermanentForm(forms.Form):
                                         "class": "ui " })
     )
 
+    MemberType = forms.ModelChoiceField(
+        queryset=MemberType.objects.all(),
+        widget=forms.Select(attrs={"_style": "search", "_dropdown_icon": "dropdown"})
+        )
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['name'].queryset = 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-
-
-class ExampleForm(forms.Form):
-
-    def __init__(self, *args, **kwargs):
-        super(ExampleForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_id = 'someId'
-        self.helper.form_class = 'some-class'
-        self.helper.form_method = 'post'
-        self.helper.form_action = 'sample_form_name'
-
-        # Note that the submit button is added separately, with a Semantic UI class.
-        self.helper.add_input(Submit('submit', 'Submit',
-                              css_class='ui button'))
-
-    like_website = forms.TypedChoiceField(
-        label='Do you like this website?',
-        choices=((1, 'Yes'), (0, 'No')),
-        coerce=lambda x: bool(int(x)),
-        widget=forms.RadioSelect,
-        initial='1',
-        required=True,
+    CenterDetails = forms.ModelChoiceField(
+        queryset=Center.objects.all(),
+        widget=forms.Select(attrs={"_style": "search", "_dropdown_icon": "dropdown"})
     )
 
-    favorite_food = forms.CharField(
-        label='What is your favorite food?',
-        max_length=80,
-        required=True,
+    FatherName = forms.CharField(
+        widget=forms.TextInput(attrs={
+                                        "Placeholder": "Father Name", 
+                                        "class": "ui " })
     )
 
-    favorite_color = forms.CharField(
-        label='What is your favorite color?',
-        max_length=80,
-        required=True,
+    Gender = forms.ChoiceField(
+        choices=GENDER_TYPE,
+        widget=forms.Select(attrs={"_dropdown_icon": "dropdown"})
     )
 
-    favorite_number = forms.IntegerField(
-        label='Favorite number',
-        required=False,
+    Contact = forms.CharField(
+        max_length=15,
+        widget=forms.TextInput(attrs={
+                                        "Placeholder": "Contact Number", 
+                                        "class": "ui " })
     )
 
-    notes = forms.CharField(
-        label='Additional notes or feedback',
-        required=False,
+    AlternateContact = forms.CharField(
+        max_length=15,
+        widget=forms.TextInput(attrs={
+                                        "Placeholder": "Alternate Contact Number", 
+                                        "class": "ui " })
     )
 
-    def __init__(self, *args, **kwargs):
-        super(ExampleForm, self).__init__(*args, **kwargs)
-        self.fields['like_website'].widget.attrs.update({'class' : 'ui input','placeholder':'Enter Username'})
-        self.fields['email'].widget.attrs.update({'class' : 'ui input','placeholder':'Enter email'})
-        self.fields['keywords'].widget.attrs.update({'class' : 'ui input','placeholder':'Enter Key words'})
-        self.fields['search_frequency'].widget.attrs.update({'class' : 'ui input','placeholder':'In Hours'})
-        self.fields['attachment'].widget.attrs.update({'class' : 'ui input'})
+    Department = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(attrs={
+                                        "Placeholder": "Department", 
+                                        "class": "ui " })
+    )

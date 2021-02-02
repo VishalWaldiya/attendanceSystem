@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     # 'semanticuiforms',
     'crispy_forms',
     'crispy_forms_semantic_ui',
-
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

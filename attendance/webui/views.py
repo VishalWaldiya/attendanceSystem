@@ -7,7 +7,7 @@ from datetime import date
 from .models import SecurityPost, MemberList, TransactionPermanent
 
 # Forms
-from .forms import TransactionPermanentForm, ExampleForm
+from .forms import TransactionPermanentForm
 
 # Create your views here.
 
@@ -48,6 +48,5 @@ class CreateTransaction(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = TransactionPermanentForm
-        context["form2"] = ExampleForm
         return context
     

@@ -23,11 +23,49 @@
 {% block additional_js %}
 
 <script>
-
     window.addEventListener("load", function(){
-        $('.ui.dropdown')
+        $('select[name = "ID"]')
+        .addClass('search')
         .dropdown()
         ;
+    });
+
+    $('select').on('change', function() {
+        $.ajax({
+            type: "GET",
+            url: "/api/v1/member/" + this.value,
+            dataType: "json",
+            success: function (result, status, xhr) {
+                console.log(result)
+                {% comment %} Assign MemberType {% endcomment %}
+                $('#id_MemberType').val(result.MemberTypeDetails).prop('disabled', 'disabled');
+
+                {% comment %} Assign Name {% endcomment %}
+                $('#id_name').val(result.name).prop('disabled', 'disabled');
+
+                {% comment %} Assign Center {% endcomment %}
+                $('#id_CenterDetails').val(result.CenterDetails).prop('disabled', 'disabled');
+
+                {% comment %} Assign Father Name {% endcomment %}
+                $('#id_FatherName').val(result.father_name).prop('disabled', 'disabled');
+
+                {% comment %} Assign Gender {% endcomment %}
+                $('#id_Gender').val(result.gender).prop('disabled', 'disabled');
+
+                {% comment %} Assign Contact {% endcomment %}
+                $('#id_Contact').val(result.contact).prop('disabled', 'disabled');
+
+                {% comment %} Assign Alternate Contact {% endcomment %}
+                $('#id_AlternateContact').val(result.altcontact).prop('disabled', 'disabled');
+
+                {% comment %} Assign Department {% endcomment %}
+                $('#id_Department').val(result.department).prop('disabled', 'disabled');
+
+            },
+            error: function (xhr, status, error) {
+                alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+            }
+        });
     });
 </script>
 
