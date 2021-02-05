@@ -133,7 +133,7 @@ class Transaction(models.Model):
     MemberDetails = models.ForeignKey('webui.Member', on_delete=models.DO_NOTHING)
     SecurityPostDetails = models.ForeignKey('webui.SecurityPost', on_delete=models.DO_NOTHING)
 
-    inTime = models.DateTimeField(auto_now_add=True)
+    inTime = models.DateTimeField(auto_now=False)
     outtime = models.DateTimeField(auto_now=False)
     status = models.CharField(choices=ACTIVE_TYPE, max_length=50, default='ACT')
     misc = models.TextField(blank=True)

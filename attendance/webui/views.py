@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse
 from django.views.generic import TemplateView, ListView, FormView
 from django.views.generic.edit import CreateView
 from datetime import date
+from django.urls import reverse_lazy
+from datetime import datetime, timedelta
 
 # Models
 from .models import SecurityPost, Member, Transaction
@@ -11,7 +13,7 @@ from .forms import TransactionForm
 
 # Create your views here.
 
-class LamdingPage(TemplateView):
+class LandingPage(TemplateView):
     template_name = "webui/dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -19,11 +21,12 @@ class LamdingPage(TemplateView):
         gates = SecurityPost.objects.all()
         
         results = {}
-        
+        datetoday = datetime.now() + timedelta(hours=5,minutes = 30)
         for gate in gates:
-            results[gate.name] = Transaction.objects.filter(SecurityPostDetails=gate).filter(inTime__date = date.today())
+            results[gate.name] = Transaction.objects.filter(SecurityPostDetails=gate).filter(inTime__date = datetoday.date())
 
         context["results"] = results
+        context["form"] = TransactionForm
         # import pdb; pdb.set_trace()
         return context
 
@@ -33,21 +36,27 @@ def index(request):
 class MemberListView(ListView):
     model = Member
 
-# class TransactionCreateView(CreateView):
-#     model = Transaction
-
 class CreateTransaction(FormView):
     template_name = "webui/transaction_form.html"
     form_class = TransactionForm
-
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        #form.send_email()
-        #print "form is valid"
-        import pdb; pdb.set_trace()
-        return super(CreateTransaction, self).form_valid(form)
+    success_url = reverse_lazy('webui:home')
 
     def form_invalid(self, form):
-        import pdb; pdb.set_trace()
+        date_format = '%Y-%m-%d %H:%M'
+        outTime = datetime.datetime.strptime(form.data.get('outime').replace('T',' '), date_format)
+        inTime = datetime.datetime.strptime(form.data.get('inTime').replace('T',' '), date_format)
+        MemberDetails__id = form.data.get('ID')
+        SecurityPostDetails__id = form.data.get('SecurityPost')
+        inTime = inTime
+        outtime = outTime
+        obj = Transaction.objects.create(
+            MemberDetails = Member.objects.get(pk=MemberDetails__id),
+            SecurityPostDetails = SecurityPost.objects.get(pk=SecurityPostDetails__id),
+            inTime = inTime,
+            outtime = outtime
+        )
         return super().form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

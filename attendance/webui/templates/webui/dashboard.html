@@ -1,45 +1,100 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="ui vertical stripe quote segment">
-    <div class="ui equal width stackable internally celled grid">
-      <div class="center aligned divided row">
 
-          <div class="ui stackable three column divided grid">
-          {% for gate,transactions in results.items %}
-            <div class="column">
-                <h3>"{{ gate }}"</h3>
-                <table class="ui very basic table">
-                    <thead>
-                      <tr>
-                        {% comment %} <th>ID</th> {% endcomment %}
-                        <th>Name</th>
-                        <th>Out Time</th>
-                        <th>Contact</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {% for transaction in transactions %}
-                        <tr>
-                            {% comment %} <td>{{ transaction.MemberDetails.id }}</td> {% endcomment %}
-                            <td>{{ transaction.MemberDetails.name }}</td>
-                            <td>{{ transaction.outtime }}</td>
-                            <td>{{ transaction.MemberDetails.contact }} <br> {% if transaction.MemberDetails.altcontact %} {{ transaction.MemberDetails.altcontact }} </td> {% endif %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                  </table>
-            </div>
-            {% endfor %}
-        </div>
-
-        <!-- <div class="column">
-          <h3>"I shouldn't have gone with their competitor."</h3>
-          <p>
+<div class="row">
+{% for gate,transactions in results.items %}
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ gate }}</h5>
+          <p class="card-text">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Out Time</th>
+                  <th scope="col">Contact</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                  <td>{{ transaction.MemberDetails.name }}</td>
+                  <td>{{ transaction.outtime }}</td>
+                  <td>{{ transaction.MemberDetails.contact }} <br> {% if transaction.MemberDetails.altcontact %} {{ transaction.MemberDetails.altcontact }}  {% endif %}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <td colspan="3"> <button data-toggle="modal" data-target="#exampleModalCenter" gate-id="{{gate.id}}" type="button" class="btn btn-primary btn-sm btn-block">Add More</button></td>
+                </tr>
+              </tbody>
+            </table>
           </p>
+          {% comment %} <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> {% endcomment %}
         </div>
-      </div> -->
+      </div>
+    </div>
+{% endfor %}
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add More Person</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/create-transaction" method="post">{% csrf_token %}
+          {% crispy form %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn btn-secondary" type="reset">Reset </button>
+        </form>
+      </div>
     </div>
   </div>
+</div>
 {% endblock content %}
+
+{% block additional_js %}
+<script>
+
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  });
+
+  $('#id_ID').on('change', function() {
+      console.log(this.value)
+      $.ajax({
+          type: "GET",
+          url: "/api/v1/member/" + this.value,
+          dataType: "json",
+          success: function (result, status, xhr) {
+              $('#id_MemberType').val(result.MemberTypeDetails).prop('readonly','true');
+              $('#id_name').val(result.name).prop('readonly','true');
+              $('#id_CenterDetails').val(result.CenterDetails).prop('readonly','true');
+              $('#id_FatherName').val(result.father_name).prop('readonly','true');
+              $('#id_Gender').val(result.gender).prop('readonly','true');
+              $('#id_Contact').val(result.contact).prop('readonly','true');
+              $('#id_AlternateContact').val(result.altcontact).prop('readonly','true');
+              $('#id_Department').val(result.department).prop('readonly','true');
+          },
+          error: function (xhr, status, error) {
+              alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+          }
+      });
+  });
+
+  $('form').on('submit',function(){
+      var inTime = new Date($('#id_inTime').val())
+      var outTime = new Date($('#id_outtime').val())
+      $(this).append(inTime,outTime);
+      return true;
+  });
+</script>
+{% endblock additional_js %}

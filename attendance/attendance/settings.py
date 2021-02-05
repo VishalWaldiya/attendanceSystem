@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'phonenumber_field',
     # 'semanticuiforms',
     'crispy_forms',
-    'crispy_forms_semantic_ui',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,6 +127,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
-CRISPY_TEMPLATE_PACK = 'semantic-ui'
-CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3',
-                                 'bootstrap4', 'semantic-ui',)
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# CRISPY_TEMPLATE_PACK = 'semantic-ui'
+# CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3',
+#                                  'bootstrap4', 'semantic-ui',)

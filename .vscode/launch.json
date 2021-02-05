@@ -4,7 +4,37 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "Django: MakeMigrations",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/attendance/manage.py",
+            "args": [
+                "makemigrations"
+            ],
+            "django": true
+        },
+        {
+            "name": "Django: Migrate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/attendance/manage.py",
+            "args": [
+                "migrate"
+            ],
+            "django": true
+        },
+        {
+            "name": "Django: Shell Plus",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/attendance/manage.py",
+            "args": [
+                "shell_plus",
+                "--notebook",
+            ],
+            "django": true
+        },
         {
             "name": "Python: Django",
             "type": "python",

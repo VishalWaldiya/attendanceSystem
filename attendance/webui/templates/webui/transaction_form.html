@@ -1,10 +1,15 @@
 {% extends "base.html" %}
-
 {% load crispy_forms_tags %}
 
+{% block additional_css %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+{% endblock additional_css %}
+
 {% block content %}
-<form class="ui form" method="post">{% csrf_token %}
-    {% for field in form %}
+<form method="post">{% csrf_token %}
+    {% crispy form %}
+    {% comment %} {% for field in form %}
         <div class="inline fields">
             <div class="field">
                 <label>{{ field.name | title }}</label>
@@ -13,53 +18,40 @@
                 {{ field }}
             </div>
         </div>
-    {% endfor %}
-    <input class="ui primary button" type="submit" value="Save">
-    <input class="ui secondary button" type="reset" value="Reset">
+    {% endfor %} {% endcomment %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button class="btn btn-secondary" type="reset">Reset </button>
 
 </form>
 {% endblock content %}
 
 {% block additional_js %}
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js">
 <script>
-    window.addEventListener("load", function(){
-        $('select[name = "ID"]')
-        .addClass('search')
-        .dropdown()
-        ;
-    });
-
-    $('select[name = "ID"]').on('change', function() {
+    $('#id_ID').on('change', function() {
+        console.log(this.value)
         $.ajax({
             type: "GET",
             url: "/api/v1/member/" + this.value,
             dataType: "json",
             success: function (result, status, xhr) {
                 console.log(result)
-                {% comment %} Assign MemberType {% endcomment %}
-                $('#id_MemberType').val(result.MemberTypeDetails).prop('disabled', 'disabled');
+                $('#id_MemberType').val(result.MemberTypeDetails).prop('readonly','true');
 
-                {% comment %} Assign Name {% endcomment %}
-                $('#id_name').val(result.name).prop('disabled', 'disabled');
+                $('#id_name').val(result.name).prop('readonly','true');
 
-                {% comment %} Assign Center {% endcomment %}
-                $('#id_CenterDetails').val(result.CenterDetails).prop('disabled', 'disabled');
+                $('#id_CenterDetails').val(result.CenterDetails).prop('readonly','true');
 
-                {% comment %} Assign Father Name {% endcomment %}
-                $('#id_FatherName').val(result.father_name).prop('disabled', 'disabled');
+                $('#id_FatherName').val(result.father_name).prop('readonly','true');
 
-                {% comment %} Assign Gender {% endcomment %}
-                $('#id_Gender').val(result.gender).prop('disabled', 'disabled');
+                $('#id_Gender').val(result.gender).prop('readonly','true');
 
-                {% comment %} Assign Contact {% endcomment %}
-                $('#id_Contact').val(result.contact).prop('disabled', 'disabled');
+                $('#id_Contact').val(result.contact).prop('readonly','true');
 
-                {% comment %} Assign Alternate Contact {% endcomment %}
-                $('#id_AlternateContact').val(result.altcontact).prop('disabled', 'disabled');
+                $('#id_AlternateContact').val(result.altcontact).prop('readonly','true');
 
-                {% comment %} Assign Department {% endcomment %}
-                $('#id_Department').val(result.department).prop('disabled', 'disabled');
+                $('#id_Department').val(result.department).prop('readonly','true');
 
             },
             error: function (xhr, status, error) {
@@ -67,6 +59,13 @@
             }
         });
     });
+
+    $('form').on('submit',function(){
+        var inTime = new Date($('#id_inTime').val())
+        var outTime = new Date($('#id_outtime').val())
+        $(this).append(inTime,outTime);
+        return true;
+    })
 </script>
 
 {% endblock additional_js %}
