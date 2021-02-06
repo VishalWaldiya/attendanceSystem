@@ -63,7 +63,7 @@
 
 {% block additional_js %}
 <script>
-
+  $(document).ready(function(){
   $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   });
@@ -96,5 +96,7 @@
       $(this).append(inTime,outTime);
       return true;
   });
+});
+
 </script>
 {% endblock additional_js %}

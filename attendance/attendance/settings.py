@@ -87,6 +87,20 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'rssb',
+        'PASSWORD': 'Alph@bet01',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -137,3 +151,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # CRISPY_TEMPLATE_PACK = 'semantic-ui'
 # CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3',
 #                                  'bootstrap4', 'semantic-ui',)
+
+PHONENUMBER_DEFAULT_REGION = 'IN'

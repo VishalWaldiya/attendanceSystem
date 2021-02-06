@@ -27,8 +27,9 @@
 {% endblock content %}
 
 {% block additional_js %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js">
+
 <script>
+$(document).ready(function(){
     $('#id_ID').on('change', function() {
         console.log(this.value)
         $.ajax({
@@ -49,8 +50,6 @@
 
                 $('#id_Contact').val(result.contact).prop('readonly','true');
 
-                $('#id_AlternateContact').val(result.altcontact).prop('readonly','true');
-
                 $('#id_Department').val(result.department).prop('readonly','true');
 
             },
@@ -65,7 +64,10 @@
         var outTime = new Date($('#id_outtime').val())
         $(this).append(inTime,outTime);
         return true;
-    })
+    });
+
+});
+
 </script>
 
 {% endblock additional_js %}

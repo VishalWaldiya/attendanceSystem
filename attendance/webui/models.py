@@ -1,5 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import RegexValidator
+
 # Create your models here.
 
 GENDER_TYPE = (
@@ -52,8 +54,11 @@ class Member(models.Model):
     father_name = models.CharField(max_length=50,blank=True)
     # Can make a relation
     gender = models.CharField(choices=GENDER_TYPE,default='M', max_length=10)
-    contact = PhoneNumberField()
-    altcontact = PhoneNumberField(blank=True)
+
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{12}$', message="Phone number must be entered in the format: '+91'. Up to 10 digits allowed.")
+    phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True) # validators should be a list
+    phone_number_alt = models.CharField(max_length=10, blank=True) # validators should be a list
+
     department = models.CharField(max_length=50, default="Security")
 
     class Meta:
@@ -136,6 +141,7 @@ class Transaction(models.Model):
     inTime = models.DateTimeField(auto_now=False)
     outtime = models.DateTimeField(auto_now=False)
     status = models.CharField(choices=ACTIVE_TYPE, max_length=50, default='ACT')
+    altcontact = PhoneNumberField(blank=True)
     misc = models.TextField(blank=True)
 
     class Meta:

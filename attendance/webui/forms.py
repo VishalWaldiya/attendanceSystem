@@ -1,8 +1,13 @@
 from django import forms
 from django.contrib.admin import widgets                                       
 from .models import Transaction, Member ,MemberType, Center, GENDER_TYPE, SecurityPost
+from django.core.exceptions import ValidationError
+import re
 
 GEEKS_CHOICES = Member.objects.values_list('id','id')
+
+def validate_alt_contact(value):
+    return re.search(r'd{10}$', value)
 
 
 # class DateInput(forms.DateInput):
@@ -76,7 +81,9 @@ class TransactionForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={
                                         "Placeholder": "Alternate Contact Number", 
-                                        "class": "ui " })
+                                        "class": "ui " }),
+        validators=[validate_alt_contact],
+        help = "Enter 10 Digits"
     )
 
     Department = forms.CharField(
