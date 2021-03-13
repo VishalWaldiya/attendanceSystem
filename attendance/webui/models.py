@@ -42,6 +42,31 @@ class MemberType(models.Model):
 
     # TODO: Define custom methods here
 
+class Center(models.Model):
+    """Model definition for Center."""
+
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        """Meta definition for Center."""
+
+        verbose_name = 'Center'
+        verbose_name_plural = 'Centers'
+
+    def __str__(self):
+        """Unicode representation of Center."""
+        return '{}'.format(self.name ) # TODO
+
+    # def save(self):
+    #     """Save method for Center."""
+    #     pass
+
+    # def get_absolute_url(self):
+    #     """Return absolute url for Center."""
+    #     return ('')
+
+    # TODO: Define custom methods here
+
 class Member(models.Model):
     """Model definition for Member."""
 
@@ -81,36 +106,10 @@ class Member(models.Model):
 
     # TODO: Define custom methods here
 
-class Center(models.Model):
-    """Model definition for Center."""
-
-    name = models.CharField(max_length=50)
-
-    class Meta:
-        """Meta definition for Center."""
-
-        verbose_name = 'Center'
-        verbose_name_plural = 'Centers'
-
-    def __str__(self):
-        """Unicode representation of Center."""
-        return '{}'.format(self.name ) # TODO
-
-    # def save(self):
-    #     """Save method for Center."""
-    #     pass
-
-    # def get_absolute_url(self):
-    #     """Return absolute url for Center."""
-    #     return ('')
-
-    # TODO: Define custom methods here
-
 class SecurityPost(models.Model):
     """Model definition for SecurityPost."""
 
     name = models.CharField(max_length=50)
-
 
     class Meta:
         """Meta definition for SecurityPost."""

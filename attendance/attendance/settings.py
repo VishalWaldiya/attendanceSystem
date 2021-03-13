@@ -80,12 +80,12 @@ WSGI_APPLICATION = 'attendance.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'testDB.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'testDB.sqlite3'),
+#     }
+# }
 
 DATABASES = {
 
@@ -138,15 +138,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+)
+
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
-BOOTSTRAP3 = {
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
+
+
+BOOTSTRAP4 = {
     'include_jquery': True,
 }
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # CRISPY_TEMPLATE_PACK = 'semantic-ui'
 # CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3',

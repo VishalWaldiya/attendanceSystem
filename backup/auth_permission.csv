@@ -1,0 +1,65 @@
+id,content_type_id,codename,name
+1,1,add_center,Can add Center
+2,1,change_center,Can change Center
+3,1,delete_center,Can delete Center
+4,1,view_center,Can view Center
+5,2,add_member,Can add Member
+6,2,change_member,Can change Member
+7,2,delete_member,Can delete Member
+8,2,view_member,Can view Member
+9,3,add_membertemporary,Can add MemberTemporary
+10,3,change_membertemporary,Can change MemberTemporary
+11,3,delete_membertemporary,Can delete MemberTemporary
+12,3,view_membertemporary,Can view MemberTemporary
+13,4,add_membertype,Can add MemberType
+14,4,change_membertype,Can change MemberType
+15,4,delete_membertype,Can delete MemberType
+16,4,view_membertype,Can view MemberType
+17,5,add_securitypost,Can add SecurityPost
+18,5,change_securitypost,Can change SecurityPost
+19,5,delete_securitypost,Can delete SecurityPost
+20,5,view_securitypost,Can view SecurityPost
+21,6,add_transactiontemporary,Can add TransactionTemporary
+22,6,change_transactiontemporary,Can change TransactionTemporary
+23,6,delete_transactiontemporary,Can delete TransactionTemporary
+24,6,view_transactiontemporary,Can view TransactionTemporary
+25,7,add_transaction,Can add Transaction
+26,7,change_transaction,Can change Transaction
+27,7,delete_transaction,Can delete Transaction
+28,7,view_transaction,Can view Transaction
+29,8,add_site,Can add site
+30,8,change_site,Can change site
+31,8,delete_site,Can delete site
+32,8,view_site,Can view site
+33,9,add_logentry,Can add log entry
+34,9,change_logentry,Can change log entry
+35,9,delete_logentry,Can delete log entry
+36,9,view_logentry,Can view log entry
+37,10,add_permission,Can add permission
+38,10,change_permission,Can change permission
+39,10,delete_permission,Can delete permission
+40,10,view_permission,Can view permission
+41,11,add_group,Can add group
+42,11,change_group,Can change group
+43,11,delete_group,Can delete group
+44,11,view_group,Can view group
+45,12,add_user,Can add user
+46,12,change_user,Can change user
+47,12,delete_user,Can delete user
+48,12,view_user,Can view user
+49,13,add_contenttype,Can add content type
+50,13,change_contenttype,Can change content type
+51,13,delete_contenttype,Can delete content type
+52,13,view_contenttype,Can view content type
+53,14,add_session,Can add session
+54,14,change_session,Can change session
+55,14,delete_session,Can delete session
+56,14,view_session,Can view session
+57,15,add_miscconttact,Can add MiscConttact
+58,15,change_miscconttact,Can change MiscConttact
+59,15,delete_miscconttact,Can delete MiscConttact
+60,15,view_miscconttact,Can view MiscConttact
+61,15,add_misccontact,Can add MiscContact
+62,15,change_misccontact,Can change MiscContact
+63,15,delete_misccontact,Can delete MiscContact
+64,15,view_misccontact,Can view MiscContact

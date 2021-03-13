@@ -73,7 +73,8 @@ class TransactionForm(forms.Form):
         max_length=15,
         widget=forms.TextInput(attrs={
                                         "Placeholder": "Contact Number", 
-                                        "class": "ui " })
+                                        "class": "ui " }),
+        required=False
     )
 
     AlternateContact = forms.CharField(
@@ -83,7 +84,7 @@ class TransactionForm(forms.Form):
                                         "Placeholder": "Alternate Contact Number", 
                                         "class": "ui " }),
         validators=[validate_alt_contact],
-        help = "Enter 10 Digits"
+        help_text = "Enter 10 Digits"
     )
 
     Department = forms.CharField(

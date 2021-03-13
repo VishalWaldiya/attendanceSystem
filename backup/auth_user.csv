@@ -1,0 +1,2 @@
+id,password,last_login,is_superuser,username,first_name,email,is_staff,is_active,date_joined,last_name
+1,pbkdf2_sha256$150000$esySUmCSX1hK$VkGR/+Guq6pQyEuGZiIOD0h+Avss8Tsg/jcnRM5dQD4=,2021-02-05 19:51:59.012482,1,superuser,,vishal@user.com,1,1,2021-02-02 16:39:00.567714,

@@ -1,0 +1,12 @@
+name,seq
+django_migrations,26
+django_admin_log,22
+django_content_type,14
+auth_permission,56
+auth_user,1
+auth_group,0
+django_site,1
+webui_membertype,3
+webui_center,1
+webui_securitypost,25
+webui_transaction,3

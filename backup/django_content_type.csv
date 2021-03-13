@@ -1,0 +1,16 @@
+id,app_label,model
+1,webui,center
+2,webui,member
+3,webui,membertemporary
+4,webui,membertype
+5,webui,securitypost
+6,webui,transactiontemporary
+7,webui,transaction
+8,sites,site
+9,admin,logentry
+10,auth,permission
+11,auth,group
+12,auth,user
+13,contenttypes,contenttype
+14,sessions,session
+15,webui,misccontact

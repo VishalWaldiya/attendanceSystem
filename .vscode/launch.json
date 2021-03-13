@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Django: Create Superuser",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/attendance/manage.py",
+            "args": [
+                "createsuperuser"
+            ],
+            "django": true
+        },
+        {
             "name": "Django: MakeMigrations",
             "type": "python",
             "request": "launch",

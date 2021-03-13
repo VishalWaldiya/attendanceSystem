@@ -1,9 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, FormView
 from django.views.generic.edit import CreateView
-from datetime import date
 from django.urls import reverse_lazy
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 # Models
 from .models import SecurityPost, Member, Transaction
@@ -43,8 +42,8 @@ class CreateTransaction(FormView):
 
     def form_invalid(self, form):
         date_format = '%Y-%m-%d %H:%M'
-        outTime = datetime.datetime.strptime(form.data.get('outime').replace('T',' '), date_format)
-        inTime = datetime.datetime.strptime(form.data.get('inTime').replace('T',' '), date_format)
+        outTime = datetime.strptime(form.data.get('outime').replace('T',' '), date_format)
+        inTime = datetime.strptime(form.data.get('inTime').replace('T',' '), date_format)
         MemberDetails__id = form.data.get('ID')
         SecurityPostDetails__id = form.data.get('SecurityPost')
         inTime = inTime
@@ -55,7 +54,8 @@ class CreateTransaction(FormView):
             inTime = inTime,
             outtime = outtime
         )
-        return super().form_invalid(form)
+        return HttpResponseRedirect(self.get_success_url())
+        # return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

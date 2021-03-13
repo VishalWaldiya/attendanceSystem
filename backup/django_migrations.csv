@@ -1,0 +1,27 @@
+id,app,name,applied
+1,contenttypes,0001_initial,2021-02-02 16:37:46.588378
+2,auth,0001_initial,2021-02-02 16:37:46.742877
+3,admin,0001_initial,2021-02-02 16:37:46.890160
+4,admin,0002_logentry_remove_auto_add,2021-02-02 16:37:47.008233
+5,admin,0003_logentry_add_action_flag_choices,2021-02-02 16:37:47.141421
+6,contenttypes,0002_remove_content_type_name,2021-02-02 16:37:47.301076
+7,auth,0002_alter_permission_name_max_length,2021-02-02 16:37:47.406911
+8,auth,0003_alter_user_email_max_length,2021-02-02 16:37:47.517853
+9,auth,0004_alter_user_username_opts,2021-02-02 16:37:47.660365
+10,auth,0005_alter_user_last_login_null,2021-02-02 16:37:47.772910
+11,auth,0006_require_contenttypes_0002,2021-02-02 16:37:47.851958
+12,auth,0007_alter_validators_add_error_messages,2021-02-02 16:37:47.957657
+13,auth,0008_alter_user_username_max_length,2021-02-02 16:37:48.082995
+14,auth,0009_alter_user_last_name_max_length,2021-02-02 16:37:48.208229
+15,auth,0010_alter_group_name_max_length,2021-02-02 16:37:48.324249
+16,auth,0011_update_proxy_permissions,2021-02-02 16:37:48.438939
+17,sessions,0001_initial,2021-02-02 16:37:48.522989
+18,sites,0001_initial,2021-02-02 16:37:48.647346
+19,sites,0002_alter_domain_unique,2021-02-02 16:37:48.768864
+20,webui,0001_initial,2021-02-02 16:37:49.026416
+21,webui,0002_miscconttact,2021-02-02 17:42:16.799117
+22,webui,0003_auto_20210202_1743,2021-02-02 17:43:54.288724
+23,webui,0004_auto_20210204_1304,2021-02-04 13:04:17.554390
+24,webui,0005_transaction_altcontact,2021-02-06 15:41:33.759019
+25,webui,0006_auto_20210206_1614,2021-02-06 16:14:15.046247
+26,webui,0007_member_phone_number_alt,2021-02-06 16:19:37.908187
